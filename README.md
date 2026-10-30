@@ -195,7 +195,9 @@ flowchart LR
 3. そのブランチへコミットして push し、Pull Request を作る。本文に `Closes #<番号>` を書く
 4. Pull Request をマージして `main` に入れる。レビュー人数は要求しない
 
-`main` への直接 push と force push は、GitHub のルールで拒みます。Pull Request をマージすると、作業ブランチは自動で削除されます。手順の正は [.cursor/rules/git-workflow.mdc](.cursor/rules/git-workflow.mdc) です。
+Pull Request をマージすると、作業ブランチは自動で削除されます。この設定は有効です。
+
+`main` への直接 push を GitHub 側で拒むルールは、このプライベートリポジトリでは作れませんでした。アカウントが GitHub Pro でないため、ruleset の作成が 403 になります。手順としての禁止は [.cursor/rules/git-workflow.mdc](.cursor/rules/git-workflow.mdc) に書いてあります。GitHub 上でも拒むには、Pro にするか、リポジトリを公開してから課題管理ボードと同じ ruleset を足します。
 
 ---
 
@@ -205,4 +207,4 @@ flowchart LR
 |---|---|
 | 2026年10月30日 | 全体タイムライン案を `docs/` に書いた |
 | 2026年10月30日 | 課題管理ボードの資料構成に合わせ、`ドキュメント/` を正とした。フォロー、ユーザー検索、S3、ALB / EC2 / RDS の前提を加えた |
-| 2026年10月30日 | 技術の版を課題管理ボードと同じ指定にした。スキルとルールを移し、この README を要件と機能定義に合わせて書いた |
+| 2026年10月30日 | 技術の版を課題管理ボードと同じ指定にした。スキルとルールを移し、この README を要件と機能定義に合わせて書いた。プライベートリポジトリ `pfgnsb/learning-sns` の `main` に置いた |
