@@ -4,7 +4,7 @@
 |---|---|
 | 文書名 | ER図 |
 | 対象システム | 学習用SNS（X風のタイムラインアプリ） |
-| 版 | 1.0 |
+| 版 | 1.1 |
 | 作成日 | 2026年10月30日 |
 | 改訂日 | 2026年10月30日 |
 | 作成者 | nsb |
@@ -49,6 +49,8 @@ erDiagram
     string display_name
     string email UK
     string password_hash
+    string bio "nullable"
+    string icon_key "nullable"
     datetime created_at
   }
   posts {
@@ -57,6 +59,7 @@ erDiagram
     string body
     string image_key "nullable"
     datetime created_at
+    datetime updated_at
   }
   comments {
     uuid id PK
@@ -152,3 +155,4 @@ follows は、follower_id と followee_id が同じ行を許さない。
 | 版 | 日付 | 内容 |
 |---|---|---|
 | 1.0 | 2026年10月30日 | 初版。follows を加え、画像は posts の任意キーにした |
+| 1.1 | 2026年10月30日 | users に自己紹介とアイコン、posts に updated_at を加えた |
