@@ -1,0 +1,11 @@
+name: sns
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: sns
+      POSTGRES_USER: sns
+      POSTGRES_PASSWORD: sns
+    ports:
+      - "5432:5432"
