@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sns.user.UserMapper">
+
+    <resultMap id="user" type="sns.user.UserAccount">
+        <constructor>
+            <idArg column="id" name="id" javaType="java.util.UUID" typeHandler="sns.user.UuidTypeHandler"/>
+            <arg column="username" name="username" javaType="java.lang.String"/>
+            <arg column="display_name" name="displayName" javaType="java.lang.String"/>
+            <arg column="email" name="email" javaType="java.lang.String"/>
+            <arg column="password_hash" name="passwordHash" javaType="java.lang.String"/>
+            <arg column="created_at" name="createdAt" javaType="java.time.OffsetDateTime"/>
+        </constructor>
+    </resultMap>
+
+    <sql id="columns">
+        id, username, display_name, email, password_hash, created_at
+    </sql>
+
+    <select id="findById" resultMap="user">
+        SELECT <include refid="columns"/>
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <select id="findByUsernameIgnoreCase" resultMap="user">
+        SELECT <include refid="columns"/>
+        FROM users
+        WHERE lower(username) = lower(#{username})
+    </select>
+
+    <select id="findByEmailIgnoreCase" resultMap="user">
+        SELECT <include refid="columns"/>
+        FROM users
+        WHERE lower(email) = lower(#{email})
+    </select>
+
+    <insert id="insert">
+        INSERT INTO users (
+            id, username, display_name, email, password_hash, bio, icon_key, created_at
+        ) VALUES (
+            #{id,typeHandler=sns.user.UuidTypeHandler},
+            #{username}, #{displayName}, #{email}, #{passwordHash}, NULL, NULL, #{createdAt}
+        )
+    </insert>
+
+</mapper>
